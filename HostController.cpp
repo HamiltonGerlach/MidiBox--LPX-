@@ -23,21 +23,21 @@ void HostController::OnReceiveCC() {
                 // KILL ALL NOTES
                 for (byte n = 0; n <= 127; n++)
                 {
-                    MidiOutIf::NoteOff(Com, 2, n);
+                    MidiOutIf::NoteOff(Com, Channel, n);
                     delayMicroseconds(50);
                 }
             }
         }
         else
         {
-            MidiOutIf::CC(Com, 2, CN, CV);
+            MidiOutIf::CC(Com, Channel, CN, CV);
         }
     }
     else {
         int pbInt = (int)((CV / 127.0) * 16383.0) << 1;
         byte PitchbendLsb = highByte(pbInt);
         byte PitchbendMsb = lowByte(pbInt) >> 1;
-        MidiOutIf::Pitchbend(Com, 2, PitchbendLsb, PitchbendMsb);
+        MidiOutIf::Pitchbend(Com, Channel, PitchbendLsb, PitchbendMsb);
     }
 }
 
@@ -47,7 +47,7 @@ void HostController::OnReceivePC() {
     #if DEBUG
         LogPC('R', Channel, PN);
     #endif
-    MidiOutIf::PC(Com, 2, PN);
+    MidiOutIf::PC(Com, Channel, PN);
 }
 
 
@@ -59,11 +59,11 @@ void HostController::OnReceiveNoteOn() {
 
     if (Velocity > 0)
     {
-        MidiOutIf::NoteOn(Com, 2, Note, 127);
+        MidiOutIf::NoteOn(Com, Channel, Note, 127);
     }
     else
     {
-        MidiOutIf::NoteOff(Com, 2, Note);
+        MidiOutIf::NoteOff(Com, Channel, Note);
     }
 }
 
@@ -74,7 +74,7 @@ void HostController::OnReceiveNoteOff() {
         LogNoteOff('R', Channel, Note);
     #endif
     
-    MidiOutIf::NoteOff(Com, 2, Note);
+    MidiOutIf::NoteOff(Com, Channel, Note);
 }
 
 
@@ -86,11 +86,11 @@ void HostController::OnReceiveAftertouch() {
 
     if (Velocity > 0)
     {
-        // MidiOutIf::NoteOn(Com, 2, Note, Velocity);
+        // MidiOutIf::NoteOn(Com, Channel, Note, Velocity);
     }
     else
     {
-        //MidiOutIf::NoteOff(Com, 2, Note);
+        //MidiOutIf::NoteOff(Com, Channel, Note);
     }
 }
 
@@ -101,7 +101,7 @@ void HostController::OnReceivePitchbend() {
         LogPitchbend('R', Channel, PitchbendLsb, PitchbendMsb);
     #endif
 
-    MidiOutIf::Pitchbend(Com, 2, PitchbendLsb, PitchbendMsb);
+    MidiOutIf::Pitchbend(Com, Channel, PitchbendLsb, PitchbendMsb);
 }
 
 

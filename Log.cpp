@@ -65,3 +65,12 @@ void LogPitchbend(char Direction, byte Channel, byte Lsb, byte Msb) {
     DPRINTF(" MSB: ");
     DPRINTLN(Msb, DEC);
 }
+
+void LogPitchbendSingle(char Direction, byte Channel, int Bend) {
+    DPRINTLN("");
+    DPRINT(Direction);
+    DPRINTF("X: Channel ");
+    DPRINT(Channel, DEC);
+    DPRINTF(" Pitchbend: ");
+    DPRINT(Bend, DEC);
+}

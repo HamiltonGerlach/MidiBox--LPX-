@@ -13,6 +13,7 @@ void LogNoteOn(char Direction, byte Channel, byte Note, byte Velocity);
 void LogNoteOff(char Direction, byte Channel, byte Note);
 void LogAftertouch(char Direction, byte Channel, byte Note, byte Velocity);
 void LogPitchbend(char Direction, byte Channel, byte Lsb, byte Msb);
+void LogPitchbendSingle(char Direction, byte Channel, int Bend);
 
 #if DEBUG
 // examples of use:
