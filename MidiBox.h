@@ -6,6 +6,10 @@
 
 #define DEBUG false                 // serial debug flag, set to false for normal operation
 
+#define DLY 50
+
+#define RAMP_DT 50
+
 #define CONTROL_BYTE 0xFF
 #define CONTROL_FLUSH false
 
